@@ -1,0 +1,268 @@
+/* Обнуляем отступы и задаем шрифт */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: #f5f5f0;
+    font-family: 'Segoe UI', Roboto, system-ui, -apple-system, sans-serif;
+    padding: 2rem 1rem;
+}
+
+/* Секция каталога */
+.catalog {
+    max-width: 1280px;
+    margin: 0 auto;
+}
+
+.catalog__header {
+    margin-bottom: 2.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem 1rem;
+}
+
+.catalog__title {
+    font-size: 2.2rem;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: #1a1a1a;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.catalog__title span {
+    background: #00b5b5;
+    color: #fff;
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.2rem 1rem;
+    border-radius: 30px;
+    letter-spacing: 0.3px;
+}
+
+.catalog__count {
+    color: #3d3d3d;
+    background: #e8e8e0;
+    padding: 0.4rem 1rem;
+    border-radius: 40px;
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Сетка карточек — 4 колонки на десктопе */
+.catalog__grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.8rem;
+}
+
+/* Карточка товара — с hover-эффектами */
+.product-card {
+    background: #ffffff;
+    border-radius: 24px;
+    overflow: hidden;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.06), 0 2px 6px rgba(0, 0, 0, 0.04);
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1), 
+box-shadow 0.4s ease;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(0, 0, 0, 0.02);
+    will-change: transform, box-shadow;
+}
+
+/* HOVER: плавное увеличение + тень */
+.product-card:hover {
+    transform: translateY(-8px) scale(1.01);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.12), 0 8px 20px rgba(0, 0, 0, 0.06);
+}
+
+.product-card__image {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #eef1ed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    background: linear-gradient(145deg, #f0f3f0, #e2e6e0);
+    transition: background 0.4s ease;
+}
+
+/* HOVER: смена фона изображения */
+.product-card:hover .product-card__image {
+    background: linear-gradient(145deg, #d4e3da, #c2d0c5);
+}
+
+.product-card__image img {
+    max-width: 100%;
+    max-height: 100%;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+    transition: transform 0.4s cubic-bezier(0.2, 0, 0, 1), filter 0.3s ease;
+}
+
+/* HOVER: изображение слегка увеличивается */
+.product-card:hover .product-card__image img {
+    transform: scale(1.05);
+    filter: drop-shadow(0 8px 12px rgba(0, 30, 20, 0.15));
+}
+
+.product-card__content {
+    padding: 1.2rem 1rem 1rem 1rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+    background: #ffffff;
+    transition: background 0.2s ease;
+}
+
+.product-card__name {
+    font-size: 1.1rem;
+    font-weight: 600;
+    line-height: 1.4;
+    color: #1e2a2a;
+    margin-bottom: 0.3rem;
+}
+
+.product-card__species {
+    font-size: 0.8rem;
+    font-weight: 500;
+    color: #4b6a6a;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+    background: #eef5f0;
+    display: inline-block;
+    padding: 0.15rem 0.8rem;
+    border-radius: 40px;
+    align-self: flex-start;
+    margin-bottom: 0.9rem;
+    transition: background 0.25s ease, color 0.25s ease;
+}
+
+.product-card:hover .product-card__species {
+    background: #d4e6dc;
+    color: #1f4a4a;
+}
+
+.product-card__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: space-between;
+    margin-top: auto;
+    padding-top: 0.7rem;
+    border-top: 1px solid #edf2ed;
+    flex-wrap: wrap;
+    gap: 0.7rem;
+}
+
+.product-card__price {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: #0d4f4f;
+    display: flex;
+    align-items: baseline;
+    gap: 0.2rem;
+}
+
+.product-card__price .currency {
+    font-size: 0.8rem;
+    color: #3f6b6b;
+}
+
+.product-card__price small {
+    font-weight: 400;
+    font-size: 0.7rem;
+    color: #5f7a7a;
+    background: #f0f5f0;
+    padding: 0.2rem 0.7rem;
+    border-radius: 40px;
+    letter-spacing: 0.3px;
+    margin-left: 0.4rem;
+}
+
+/* Стили для кнопки "В корзину" */
+.btn-cart {
+    background: #1a3a3a;
+    border: none;
+    color: #fff;
+    font-size: 0.8rem;
+    font-weight: 600;
+    padding: 0.45rem 1rem 0.45rem 1.2rem;
+    border-radius: 60px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    transition: background 0.3s ease, transform 0.25s ease, box-shadow 0.25s ease;
+    letter-spacing: 0.02em;
+    box-shadow: 0 2px 6px rgba(0, 30, 20, 0.1);
+    line-height: 1;
+}
+
+.btn-cart .arrow {
+    display: inline-block;
+    transition: transform 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+/* HOVER для кнопки */
+.btn-cart:hover {
+    background: #005f5f;
+    box-shadow: 0 4px 12px rgba(0, 80, 70, 0.25);
+    transform: scale(1.02);
+}
+
+/* Дополнительно: если кнопка активна (имитация) */
+.btn-cart:active {
+    transform: scale(0.96);
+}
+
+/* Адаптив: планшет 3 колонки */
+@media (max-width: 1200px) {
+    .catalog__grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+    }
+}
+
+/* Адаптив: мобилка 1–2 колонки */
+@media (max-width: 768px) {
+    .catalog__grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+    .catalog__title {
+        font-size: 1.8rem;
+    }
+    .product-card__name {
+        font-size: 1rem;
+    }
+    .btn-cart {
+        font-size: 0.7rem;
+        padding: 0.35rem 0.8rem 0.35rem 1rem;
+    }
+}
+
+@media (max-width: 450px) {
+    .catalog__grid {
+        grid-template-columns: 1fr;
+        gap: 1.2rem;
+    }
+    .catalog__header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    .catalog__title {
+        font-size: 1.5rem;
+    }
+    .product-card__image {
+        padding: 1.2rem;
+    }
+}
